@@ -7,11 +7,9 @@
 
 ## What is a _**'blur'**_?
 
-![An example of a blur](https://github.com/thegrassisstillgreen/blurifier/blob/master/example_blurs/example_blur_1.jpg =100%x)
+<img src="https://github.com/thegrassisstillgreen/blurifier/blob/master/example_blurs/example_blur_1.jpg" width=50% alt="Tim Hortons window-side blur" />
 
->The blur above was created using 'n' photos, all taken from the window of a Tim Hortons in Toronto, Canada.
-
-This is a term I've come up with to describe these layered images.
+>The blur above was created using 50 photos, all taken from the window of a Tim Hortons in Toronto, Canada.
 
 A **blur** is a collection of images that are then overlaid on top of another. Depending on the way it's used, the resulting image can be anything! It can end up interesting and abstract-looking, or it can look like trash. It's all about the source images that you decide to include!
 
@@ -41,7 +39,7 @@ For example, if I was to use the images included in this repository in the *imgs
 
 If all went well, there should be a new .jpg file in the *Blurify* folder called *output.jpg*. Go ahead and open it! It should look like this:
 
-![Example blur result](https://github.com/thegrassisstillgreen/blurifier/blob/master/example_blurs/result_1.jpg)
+<img src="https://github.com/thegrassisstillgreen/blurifier/blob/master/example_blurs/result_1.jpg" width=25% alt="Example blur result" />
 
 ### Congratulations! You just created your first *blur*!
 
