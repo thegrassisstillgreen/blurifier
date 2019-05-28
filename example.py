@@ -1,4 +1,3 @@
-from lib.PhotoReader import PhotoReader
 from lib.ArgHandler import ArgHandler
 from lib.ImgCombiner import ImgCombiner
 

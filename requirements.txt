@@ -1,7 +1,3 @@
-os
-sys
-argparse
-glob
-PIL
-tqdm
-pathvalidate
+pathvalidate==0.28.2
+tqdm==4.32.1
+Pillow==6.0.0

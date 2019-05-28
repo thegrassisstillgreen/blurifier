@@ -31,17 +31,10 @@ class ImgCombiner:
     # are larger than those of the images there will be no change (consider renaming this method to reflect that...).
     def changeImageSize(self, imgWidth, imgHeight):
         newSize = (imgWidth, imgHeight)
-        
+
         print("Resizing images...", file=sys.stderr)
         for img in tqdm(self.imgs):
             img.setSize(newSize)
-    
-    '''
-    def extractPixelInfo(self):
-        print("Extracting pixel info...", file=sys.stderr)
-        for img in tqdm(self.imgs):
-            img.setPixels()
-    '''
 
     # This creates an 'empty' (zero-filled) 2D list of integers to hold the sum/avg pixels (depending on which method will use)
     # which will eventually be used to form the output image.
