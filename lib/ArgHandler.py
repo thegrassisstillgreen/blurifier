@@ -3,10 +3,12 @@ import os
 import sys
 from pathvalidate import is_valid_filename, sanitize_filename
 
-## NEEDS TO CHECK IF IMAGES WITH GIVEN TYPE ARE IN THE DIRECTORY SPECIFIED
-    ## ie. if given dir, and ext of jpg, check that dir if there are any jpg files before proceeding
-
+'''
+This class helps parse and validate the provided command line arguments from the main program.
+'''
 class ArgHandler:
+    # Create and setup the actual parser, along with getting all the args and creating an empty dictionary
+    # that will later contain all of this class' output
     def __init__(self):
         self.parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
         self.setupParser()
@@ -21,8 +23,8 @@ class ArgHandler:
             }
         }
 
-    ## CONSIDER USING A DATA FILE FOR THIS FOR EASY ADDITION/REMOVAL OF ELEMENTS
-    ## AND LESS LENGTHY METHOD -- COULD SIMPLY USE A FOR LOOP
+    # TODO: CONSIDER USING A DATA FILE FOR THIS FOR EASY ADDITION/REMOVAL OF ELEMENTS
+    # AND LESS LENGTHY METHOD -- COULD SIMPLY USE A FOR LOOP
     # Adds all required/optional arguments to the parser
     def setupParser(self):
         ## REQUIRED ARGUMENTS ##
@@ -60,6 +62,8 @@ class ArgHandler:
             help="The level of contrast to apply to input images to prior to combining.\n(default: %(default)s)"
         )
 
+    # Checks if the directory provided is valid through use of the isdir method from the os library. If it's valid,
+    # the class' package is updated with this directory.
     def checkValidDirectory(self):
         directory = self.args.image_directory
 
@@ -72,6 +76,8 @@ class ArgHandler:
         print("Directory O.K.", file=sys.stderr)
         self.argPackage['directory'] = directory
 
+    # Checks if the extension provided is valid by seeing if it matches one of the image extensions in the list below. If it's valid,
+    # the class' package is update with this directory.
     def checkValidExtension(self):
         extension = self.args.image_extension
 
@@ -86,6 +92,8 @@ class ArgHandler:
         print("Extension O.K.", file=sys.stderr)
         self.argPackage['extension'] = extension
     
+    # Checks if files with the provided extension exist within the provided directory using the isfile method from the os library.
+    # If it's valid, the program continues without error.
     def checkFileWithExtensionInDir(self):
         directory = self.args.image_directory
         filepaths = ["{dir}\\{fn}".format(dir=directory, fn=filename) for filename in os.listdir(directory)]
@@ -99,6 +107,8 @@ class ArgHandler:
             print("error: No files with {ext} extension were found in {dir}".format(ext=extension, dir=directory), file=sys.stderr)
             sys.exit(1)
 
+    # Checks whether the file name for the output image (if given) is valid through the use of the is_valid_filename method from
+    # the pathvalidate library. If it's valid, the class' package is updated with this output file name.
     def checkValidOutfile(self):
         filename = self.args.outfile
 
@@ -116,6 +126,7 @@ class ArgHandler:
         print("Output filename O.K.", file=sys.stderr)
         self.argPackage['outfile'] = filename
 
+    # TODO... Still in progress...
     def checkValidImageEffect(self):
         brightness = self.args.brightness
         contrast = self.args.contrast
@@ -126,6 +137,8 @@ class ArgHandler:
         self.argPackage['enhancers']['brightness'] = brightness
         self.argPackage['enhancers']['contrast'] = contrast
     
+    # Checks whether the package has all info that is required. If not all info is present,
+    # the program exits -- something bad happened.
     def checkArgPackageNotEmpty(self):
         for argKey, argValue in self.argPackage.items():
             if type(argValue) is type(None):
@@ -135,6 +148,8 @@ class ArgHandler:
         
         print("Arguments O.K.", file=sys.stderr)
 
+    # This is a wrapper method that performs all of the above methods in the appropriate sequence so that
+    # only a single method call is required to parse and validate the command line arguments.
     def checkArgsValid(self):
         self.checkValidDirectory()
         self.checkValidExtension()
@@ -145,6 +160,7 @@ class ArgHandler:
     
     def getArgPackage(self):
         return self.argPackage
+
 def main():
     ah = ArgHandler()
     ah.checkArgsValid()

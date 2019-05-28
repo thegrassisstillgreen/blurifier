@@ -1,6 +1,9 @@
 from PIL import Image
 import sys
 
+'''
+This is a small class to customize PIL's image object.
+'''
 class Img:
     def __init__(self, img):
         self.img = img
@@ -8,6 +11,7 @@ class Img:
         self.size = self.getSize()
         self.filepath = self.getFilePath()
 
+    # Sets the new pixels of the image using those given (this method primarily for output image).
     def setNewPixels(self, pixels):
         self.img.putdata(pixels)
 
@@ -23,6 +27,7 @@ class Img:
     def getSize(self):
         return self.img.size
     
+    # Reduces the size of the image to fit within the given size dimensions.
     def setSize(self, size):
         self.img.thumbnail(size, Image.ANTIALIAS)
         self.size = self.getSize()
